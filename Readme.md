@@ -11,12 +11,12 @@ Welcome to the **DSL Colab Handson Repo**! This repository contains hands-on pro
    - **Skills**: Vivado project setup, constraint files, basic digital logic.  
 
 ### 2. **T02_Basys3_StopWatch**  
-   - **Description**: Design a digital stopwatch with start, stop, and reset functionality using the Basys3 board.  
-   - **Skills**: Sequential logic, finite state machines (FSMs), seven-segment display control.  
+   - **Description**: Design a digital stopwatch with reset functionality using the Basys3 board.  
+   - **Skills**: Sequential logic, seven-segment display control.  
 
 ### 3. **T03_Cmod_UART_ADC**  
    - **Description**: Interface a Cmod FPGA board with an ADC (Analog-to-Digital Converter) and communicate data via UART.  
-   - **Skills**: UART communication, ADC interfacing, peripheral integration.  
+   - **Skills**: UART communication, ADC interfacing, peripheral integration, finite state machines (FSMs).  
 
 ### 4. **T04_CmodA7_PRNG**  
    - **Description**: Implement a pseudo-random number generator (PRNG) on the Cmod A7 FPGA board.  
