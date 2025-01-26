@@ -32,6 +32,10 @@ Welcome to the **DSL Colab Handson Repo**! This repository contains hands-on pro
 ├── T02_Basys3_StopWatch.ipynb               # Jupyter notebook guide for Project 2
 ├── T03_Cmod_UART_ADC.ipynb                  # Jupyter notebook guide for Project 3
 ├── T04_CmodA7_PRNG.ipynb                    # Jupyter notebook guide for Project 4
+├── Simulation/                              # Verilog Simulation on Colab T01,T02,T03
+│   ├── T01_Basys3_LogicGate.ipynb           # Verilog Simulation for T01   
+│   ├── T02_Basys3_StopWatch.ipynb           # Verilog Simulation for T02   
+│   ├── T03_Cmod_UART_ADC.ipynb              # Verilog Simulation for T03
 ├── Demo_Code/                               # Pre-built code examples for all projects
 │   ├── T01_Basys3_LogicGate/                # Demo Code for T01   
 │   ├── T02_Basys3_StopWatch/                # Demo Code for T02   
