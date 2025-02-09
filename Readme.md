@@ -48,3 +48,138 @@ Welcome to the **DSL Colab Handson Repo**! This repository contains hands-on pro
 │   ├── O3_FPGA_Program_Flash_Tutorial.pdf   # Programming FPGA flash memory
 │   └── O4_PCB_CMODA7_Tutorial.pdf           # Cmod A7 PCB usage guide
 └── figures/                                 # Diagrams and screenshots for documentation
+```
+
+
+
+
+
+---
+
+
+
+## DSL User Guide - Getting Started with Colab Verilog Simulation
+
+### Github + Colab Preparation
+1. Please sign up for a [Github account](https://github.com/);
+
+2. Create a new Repo with Readme file; ![Create Repo](./figure/R0_create_repo.png)
+
+3. Configure your repo as follows:
+
+   (a) Repo Name;
+
+   (b) "Private";
+
+   (c) Enable "Add a README file";
+
+   ![config_repo](./figure/R1_repo_config.png)
+
+   4. Open the Colab Practice from Google classroom;
+   5. "File" -> "Save" ![save_repo](./figure/R2_Save.png)
+   6. If you have not link your Colab to your Github account, there will be a pop-up window for log-in;
+   7. Select the repo for your DSL homework;
+   8. Enable "Include a link to Colab";
+   9. The web page will redirect to your Github Repo;
+   10. Click "Open in Colab"; ![Redirect_page](./figure/R4_Redirect.png)
+   11. Check the domain of Page, which should be same with Github user name; ![New_colab](./figure/R5_Page_Ind.png)
+
+### Usage of Colab 
+
+You have insert a `Code` Block instead of `Text` Block in your notebook to run the program. There are 3 Verilog HDL blocks can be used for analysis and simulation purpose. ![cb](./figure/R10_codeblock.png)
+
+#### Block `%%print_verilog`
+
+This block is used to generate the RTL level schematic of giving module; 
+
+```
+%%print_verilog # This is compulsory, which indicate this block is used for `print_verilog`
+
+//The module under analysis;
+//--my 2 inputs and gate--//
+module my_and2(
+    output F,
+    input a,
+    input b);
+
+  assign F = (a&b);
+
+endmodule
+//-----//
+```
+
+#### Block `%%verilog`
+
+This block is used to run the simulation; Please notice:
+
+1. If there are anything changes in `print_verilog`, please manually update in `verilog` block;
+2. In this example, `my_and2_tb` is testbench instance name;
+3. In this example, Wire `F_tb` is a object under `my_and2_tb`;
+4. In this example, Reg `a_tb` ,`b_tb` are objects under `my_and2_tb`;
+5. In this example,  Dump File name is "my_and2_tb.vcd"
+
+```
+%%verilog # This is compulsory, which indicate this block is used for `verilog`
+
+// If there is anything change in `print_verilog`, please manually update in `verilog` block;
+//--my 2 inputs and gate--//
+module my_and2 (
+    output F,
+    input a,
+    input b);
+
+  assign F = (a&b);
+
+endmodule
+//-----//
+
+//-----//
+module my_and2_tb(); //`my_and2_tb` is testbench instance name;
+    wire F_tb;	//Wire 'F_tb' is a object under `my_and2_tb`
+    reg a_tb, b_tb; //Reg 'a_tb' 'b_tb' are objects under `my_and2_tb`
+    my_and2 dut(.F(F_tb),.a(a_tb),.b(b_tb));
+
+    // Test stimulus
+    initial begin
+        $dumpfile("my_and2_tb.vcd"); //Dump File Name;
+        $dumpvars;
+        #0 a_tb = 1'b0; b_tb = 1'b0;
+        #1 a_tb = 1'b0; b_tb = 1'b1;
+        #1 a_tb = 1'b1; b_tb = 1'b0;
+        #1 a_tb = 1'b1; b_tb = 1'b1;
+        #1 $finish;
+
+        $dumpoff;
+    end
+
+endmodule
+```
+
+
+
+#### Block `%%waveform`
+
+This block is used to view the waveform of the simulation;
+
+1. `%%waveform <DUMP_FILE_NAME>` : Load the waveform from given dump file;
+2. List the signal you want to view by adding `'<testbench_instance_name>/<signal_object>'
+
+```  
+%%waveform my_and2_tb.vcd
+sign_list = ['my_and2_tb.F_tb','my_and2_tb.a_tb', 'my_and2_tb.b_tb']
+time_begin = 0
+time_end = 5
+base = 'dec' # bin, dec, dec2, hex, octal
+```
+
+### Invite the Instructor as  Collaborator
+
+1. Open your Github DSL homework page -> `Settings`; ![setting](./figure/R6_Setup.png) 
+
+2. `Collaborator
+
+    ![col](./figure/R7_Col.png)
+
+3. `Add people`
+4. Typo Your Password;
+5. Add `pe8sutd`![fin](./figure/R9_Invited.png)
